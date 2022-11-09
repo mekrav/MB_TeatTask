@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http.Headers;
 
 namespace GeometryLib
 {
@@ -8,10 +9,16 @@ namespace GeometryLib
 
         public Circle(double r)
         {
-            if(radius >= 0)
+            Console.WriteLine(r);
+            if (r >= 0)
+            {
                 radius = r;
+            }
+            else
+            {
+                throw new ArgumentException("Radius mast be grater then 0");
+            }
         }
-
 
         /// <summary>
         /// Вычисляет площадь круга
