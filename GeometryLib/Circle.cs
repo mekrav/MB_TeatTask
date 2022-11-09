@@ -2,20 +2,16 @@
 
 namespace GeometryLib
 {
-    internal class Circle
+    public class Circle
     {
-        public double radius
+        public double radius { get; private set; }
+
+        public Circle(double r)
         {
-            get
-            {
-                return radius;
-            }
-            set
-            {
-                if (value >= 0)
-                    radius = value;
-            }
+            if(radius >= 0)
+                radius = r;
         }
+
 
         /// <summary>
         /// Вычисляет площадь круга
