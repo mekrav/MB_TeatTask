@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GeometryLib;
 using System;
 
 namespace GeometryLib.Tests
@@ -13,8 +12,9 @@ namespace GeometryLib.Tests
             var c = new Circle(1);
             Assert.IsTrue(c.Area() == Math.PI);
         }
+
         [TestMethod]
-        public void AreaMustReturnArgumentExcwption()
+        public void ConstructorMustReturnArgumentExcwption()
         {
             Assert.ThrowsException<ArgumentException>(delegate()
             {

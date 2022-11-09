@@ -5,12 +5,24 @@ using System.Text;
 
 namespace GeometryLib
 {
-    internal class Triangle
+    public class Triangle
     {
         public double[] sides { get; private set; }
         public Triangle(double a, double b, double c)
         {
-           sides = new double[] { a, b, c };
+            //Проверяем возможен ли такой треугольник
+            var posSides = new double[] { a, b, c };
+            posSides = posSides.OrderByDescending(x => x).ToArray();
+            //Длина кратчайшей стороны должна быть положительна и
+            //Сумма длин двух коротких сторон должна быть больше длины третьей
+            if ((posSides[2] > 0) && (posSides[0] < posSides[1] + posSides[2]))
+            {
+                sides = posSides;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid lengths of a sides");
+            }
         }
 
         public double Area()
@@ -23,6 +35,7 @@ namespace GeometryLib
         public bool isOrthogonal()
         {
             //Сортируем по убыванию, что бы не перебирать варианты
+            //В конструкторе мы уже сортировали длины сторон, но дабы мсключить проблем при расширении класса проводим сортировку ещё раз в этом методе. 
             double[] copySides = sides.OrderByDescending(x => x).ToArray();
             return sides[0] * sides[0] == sides[1] * sides[1] + sides[2] * sides[2];
 
